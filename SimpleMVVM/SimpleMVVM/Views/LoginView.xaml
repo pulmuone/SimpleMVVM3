@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SimpleMVVM.ViewModels"
+             xmlns:behaviors="clr-namespace:SimpleMVVM.Behaviors"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             x:Class="SimpleMVVM.Views.LoginView"
+             Title="로그인">
+
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel x:Name="vm"/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <!--Auto, *, 1* -->
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="10"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+                <ColumnDefinition Width="80"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Source="Images/pallet.png"/>
+
+            <Label Grid.Row="1" Grid.Column="1" Text="아이디 : " FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
+            <Entry Grid.Row="1" Grid.Column="2" Text="{Binding UserID}" IsEnabled="{Binding IsControlEnable}" VerticalTextAlignment="Center" Placeholder="ID를 입력해주세요."/>
+
+            <Label Grid.Row="2" Grid.Column="1" Text="비밀번호 : " FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
+            <Entry Grid.Row="2" Grid.Column="2" Text="{Binding Password}"  ReturnCommand="{Binding LoginCommand}" IsEnabled="{Binding IsControlEnable}" IsPassword="True" Keyboard="Numeric" VerticalTextAlignment="Center">
+           
+            </Entry>
+
+            <Label Grid.Row="3" Grid.Column="1" Text="물류센터 : " FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
+            <Picker Grid.Row="3" 
+                Grid.Column="2" 
+                Title="물류센터"
+                IsEnabled="{Binding IsControlEnable}"
+                ItemsSource="{Binding WarehouseList}"
+                ItemDisplayBinding="{Binding WarehouseName}"
+                SelectedItem="{Binding SelectedWarehouse}"/>
+            
+            <!--<Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="로그인"  Command="{Binding LoginCommand}"/>-->
+            <Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="로그인">
+                <Button.Behaviors>
+                    <behaviors:EventToCommandBehavior
+							EventName="Clicked"
+							Command="{Binding LoginCommand}"/>
+                </Button.Behaviors>
+            </Button>
+            
+            <ActivityIndicator
+                Grid.Row="6" 
+                Grid.ColumnSpan="4"  
+                Color="Red"
+                IsRunning="{Binding IsBusy}"  
+                IsVisible="{Binding IsBusy}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center">
+            </ActivityIndicator>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

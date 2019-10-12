@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SimpleMVVM.ViewModels"
+             xmlns:controls="clr-namespace:SimpleMVVM.Controls"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"             
+             x:Class="SimpleMVVM.Views.InboundView"
+             Title="입고-헤더">
+
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="LightSkyBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    
+    <ContentPage.BindingContext>
+        <vm:InboundViewModel x:Name="vm"/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <!--Auto, *, 1* -->
+                <RowDefinition Height="50"></RowDefinition> <!-- 입고일자-->
+                <RowDefinition Height="50"></RowDefinition> <!-- 입고전표-->
+                <RowDefinition Height="*"></RowDefinition> <!-- Grid -->
+                <RowDefinition Height="50"></RowDefinition> <!-- 버튼-->
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Text="입고일자"/>
+            <DatePicker Date="{Binding InboundDate}"
+						Grid.Row="0"
+						Grid.Column="1"
+						Format="yyyy-MM-dd">
+            </DatePicker>
+            <Label Grid.Row="1" Grid.Column="0" Text="입고전표"/>
+            <Entry Grid.Row="1" Grid.Column="1" Text="{Binding InvoiceNumber}"/>
+
+            <ScrollView
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Orientation="Horizontal"
+                HorizontalScrollBarVisibility="Always"
+                VerticalScrollBarVisibility="Always"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                x:Name="scrollView">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid x:Name="HeaderGrid" Grid.Row="0" RowSpacing="0"  ColumnSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="150"/>
+                        </Grid.ColumnDefinitions>
+
+                        <controls:DataGridHeader Text="전표번호" SortingEnabled="True" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="0" FieldName="InvoiceNumber" BindingContext="{x:Reference vm}"/>
+                        <controls:DataGridHeader Text="납품업체코드" SortingEnabled="True" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="1" FieldName="VenderCode" BindingContext="{x:Reference vm}"/>
+                        <controls:DataGridHeader Text="납품업체명" SortingEnabled="True" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="2" FieldName="VenderName" BindingContext="{x:Reference vm}"/>
+                        <controls:DataGridHeader Text="비고" SortingEnabled="False" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="3" FieldName="Remark" BindingContext="{x:Reference vm}"/>
+                    </Grid>
+
+                    <CollectionView
+                        x:Name="collectionView"
+                        Grid.Row="1"
+                        SelectionMode="Single"
+                        SelectedItems="{Binding SelectedItems}"
+                        SelectedItem="{Binding SelectedItem}"
+                        ItemsSource="{Binding InboundList}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnSpacing="0" RowSpacing="0" HeightRequest="40">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition Width="150"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Text="{Binding InvoiceNumber}" HorizontalOptions="Center" />
+                                    <Label Grid.Column="1" Text="{Binding VenderCode}" HorizontalOptions="Center" />
+                                    <Entry Grid.Column="2" Text="{Binding VenderName}" HorizontalOptions="Center" />
+                                    <Label Grid.Column="3" Text="{Binding Remark}"/>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="listItem_Tapped" CommandParameter="{Binding InvoiceNumber}" />
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </ScrollView>
+
+            <StackLayout Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Command="{Binding SearchCommand}" Text="조회" WidthRequest="100" Margin="0,0,30,0"/>
+                <Button Command="{Binding SearchCommand}" Text="처리" WidthRequest="100" Margin="30,0,0,0"/>
+            </StackLayout>
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SimpleMVVM.Views.Login2View">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Text="ID"  HorizontalTextAlignment="End"/>
+            <Entry Grid.Row="0" Grid.Column="1" Placeholder="ID를 입력해 주세요"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Text="PW" HorizontalOptions="End"/>
+            <Entry x:Name="PasswdEntry"
+                Grid.Row="1" 
+                Grid.Column="1"  
+                Completed="PasswdEntry_Completed"
+                Placeholder="PW를 입력해 주세요"/>
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

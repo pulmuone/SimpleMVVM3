@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SimpleMVVM.Views.MainView">
+    <ContentPage.Content>
+
+        <ScrollView>
+            <Grid Margin="5,5,5,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Row="0" Grid.Column="0" x:Name="InboundButton" Text="입고" Clicked="InboundButton_Clicked"/>
+                <Button Grid.Row="0" Grid.Column="1" x:Name="OutboundButton" Text="출고" Clicked ="OutboundButton_Clicked" />
+                
+                <Button Grid.Row="1" Grid.Column="0" x:Name="LogoutButton" Text="로그아웃" Clicked ="LogoutButton_Clicked" />
+
+
+            </Grid>
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

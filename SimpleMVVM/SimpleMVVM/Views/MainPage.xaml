@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:SimpleMVVM.Behaviors"
+             xmlns:vm="clr-namespace:SimpleMVVM.ViewModels"
+             xmlns:model="clr-namespace:SimpleMVVM.Models"
+             xmlns:controls="clr-namespace:SimpleMVVM.Controls"
+             x:DataType="vm:EmpViewModel"
+             x:Class="SimpleMVVM.MainPage">
+
+    <ContentPage.BindingContext>
+        <vm:EmpViewModel x:Name="vm"/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" 
+                                        Value="LightSkyBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <Label Text="ID" />
+        <Entry Placeholder="EmpID" 
+               x:Name="EmpId"
+               Text="{Binding EmpId}"
+               ReturnCommand="{Binding ReturnValueCommand}"/>
+        <Label Text="Name"/>
+        
+        <Entry Placeholder="Name" Text="{Binding EmpName}"/>
+
+        <Button Text="조회" Command="{Binding SendCommand}"/>
+
+        <Button Text="이동" x:Name="moveButton" Clicked="MoveButton_Clicked"/>
+
+        <Label Text="Result : "/>
+        <Label Text="{Binding Result}"/>
+
+        <ScrollView Orientation="Horizontal"
+            HorizontalScrollBarVisibility="Always"
+            VerticalScrollBarVisibility="Always"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            x:Name="scrollView">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid x:Name="HeaderGrid" Grid.Row="0" RowSpacing="0"  ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+
+                    <controls:DataGridHeader Text="사번" SortingEnabled="True" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="0" FieldName="EmpId" BindingContext="{x:Reference vm}"/>
+                    <controls:DataGridHeader Text="이름" SortingEnabled="False" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="1" FieldName="EmpName" BindingContext="{x:Reference vm}"/>
+                    <controls:DataGridHeader Text="주소" SortingEnabled="True" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="2" FieldName="Addr" BindingContext="{x:Reference vm}"/>
+                    <controls:DataGridHeader Text="-" SortingEnabled="False" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="3" />
+                    <controls:DataGridHeader Text="나이" SortingEnabled="False" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="4" FieldName="Age" BindingContext="{x:Reference vm}"/>
+                    <controls:DataGridHeader Text="+" SortingEnabled="False" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="5" />
+                    <controls:DataGridHeader Text="학년" SortingEnabled="False" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="6" />
+                </Grid>
+
+                <CollectionView 
+                    x:Name="collectionView"
+                    Grid.Row="1"
+                    SelectionMode="Single"
+
+                    SelectedItem="{Binding SelectedItem}"
+                    Focused="CollectionView_Focused"
+                    ScrollToRequested="CollectionView_ScrollToRequested"
+                    SelectionChanged="CollectionView_SelectionChanged" 
+                    ItemsSource="{Binding EmpList}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:EmpModel">
+                                <Grid ColumnSpacing="0" RowSpacing="0" HeightRequest="40">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="80"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="{Binding EmpId}" />
+                                <Label Grid.Column="1" Text="{Binding EmpName}" HorizontalOptions="Center" />
+                                <Label Grid.Column="2" Text="{Binding Addr}"/>
+                                <Button Grid.Column="3" Text="-"  Command="{Binding MinusButtonCommand}"/>
+                                <Entry 
+                                    x:Name="AgeEntry"
+                                    Grid.Column="4" 
+                                    Text="{Binding Age}"  
+                                    Keyboard="Numeric" 
+                                    ReturnCommandParameter="{Binding EmpId}"
+                                    TextChanged ="AgeEntry_TextChanged"
+                                    Unfocused="AgeEntry_Unfocused"
+                                    Focused="AgeEntry_Focused"
+                                    />
+                                <Button Grid.Column="5" Text="+"  Command="{Binding PlusButtonCommand}"/>
+                                <Picker Grid.Column="6"  
+                                        Title="등급"
+                                        ItemsSource="{Binding Grades}"
+                                        ItemDisplayBinding="{Binding Name}"
+                                        SelectedItem="{Binding Grade}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </ScrollView>
+    </StackLayout>    
+</ContentPage>
