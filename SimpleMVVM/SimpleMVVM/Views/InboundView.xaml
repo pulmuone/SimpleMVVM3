@@ -84,9 +84,8 @@
                     <CollectionView
                         x:Name="collectionView"
                         Grid.Row="1"
-                        SelectionMode="Single"
+                        SelectionMode="Multiple"
                         SelectedItems="{Binding SelectedItems}"
-                        SelectedItem="{Binding SelectedItem}"
                         ItemsSource="{Binding InboundList}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
@@ -99,11 +98,17 @@
                                     </Grid.ColumnDefinitions>
                                     <Label Grid.Column="0" Text="{Binding InvoiceNumber}" HorizontalOptions="Center" />
                                     <Label Grid.Column="1" Text="{Binding VenderCode}" HorizontalOptions="Center" />
-                                    <Entry Grid.Column="2" Text="{Binding VenderName}" HorizontalOptions="Center" />
+                                    <Entry Grid.Column="2" Text="{Binding VenderName}" x:Name="VenderNameEntry" HorizontalOptions="Center"
+                                           ReturnCommandParameter="{Binding InvoiceNumber}"
+                                           TextChanged="VenderNameEntry_TextChanged"
+                                           Unfocused ="VenderNameEntry_Unfocused"
+                                               Focused="VenderNameEntry_Focused">
+                                        
+                                    </Entry>
                                     <Label Grid.Column="3" Text="{Binding Remark}"/>
-                                    <Grid.GestureRecognizers>
+                                    <!--<Grid.GestureRecognizers>
                                         <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="listItem_Tapped" CommandParameter="{Binding InvoiceNumber}" />
-                                    </Grid.GestureRecognizers>
+                                    </Grid.GestureRecognizers>-->
                                 </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>

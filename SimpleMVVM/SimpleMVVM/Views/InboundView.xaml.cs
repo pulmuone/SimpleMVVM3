@@ -38,5 +38,23 @@ namespace SimpleMVVM.Views
             //await Navigation.PushAsync(new InboundItemsView(selectedItem));
             //await Navigation.PushAsync(new InboundItemsView());
         }
+
+        private void VenderNameEntry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void VenderNameEntry_Unfocused(object sender, FocusEventArgs e)
+        {
+
+        }
+
+        private void VenderNameEntry_Focused(object sender, FocusEventArgs e)
+        {
+            InboundModel selectedItem = (InboundModel)(BindingContext as InboundViewModel).InboundList.Where(i => i.InvoiceNumber == ((Entry)sender).ReturnCommandParameter).FirstOrDefault();
+            //this.collectionView.SelectedItem = selectedItem;
+
+            collectionView.SelectedItems.Add(selectedItem);
+        }
     }
 }

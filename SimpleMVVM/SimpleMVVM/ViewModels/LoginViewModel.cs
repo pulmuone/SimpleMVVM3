@@ -68,7 +68,7 @@ namespace SimpleMVVM.ViewModels
         private bool LoginProcess()
         {
             // Simulate a 5 second pause
-            Thread.Sleep(5000);
+            Thread.Sleep(1000);
             //db연결
 
             return true;

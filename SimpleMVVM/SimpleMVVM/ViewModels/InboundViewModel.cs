@@ -15,11 +15,9 @@ namespace SimpleMVVM.ViewModels
         private ObservableRangeCollection<InboundModel> _inboundList = new ObservableRangeCollection<InboundModel>();
         private DateTime _inboundDate = Convert.ToDateTime("1900-01-01");
         private string _invoiceNumber;
-        private InboundModel _selectedItem 
-            = new InboundModel();
+        private InboundModel _selectedItem = new InboundModel();
         
-        private List<InboundModel> _selectedItems 
-            = new List<InboundModel>();
+        private ObservableRangeCollection<object> _selectedItems = new ObservableRangeCollection<object>();
         
         public ICommand SearchCommand { get; private set; }
 
@@ -39,7 +37,13 @@ namespace SimpleMVVM.ViewModels
             InboundList.Clear();
             InboundList.AddRange(lst, System.Collections.Specialized.NotifyCollectionChangedAction.Reset);
 
-            InboundDate = DateTime.Now;        }
+            InboundDate = DateTime.Now;
+
+            SelectedItems = new ObservableRangeCollection<object>()
+            {
+                InboundList[1], InboundList[2]
+            };
+        }
 
         private async void Search(object obj)
         {
@@ -48,12 +52,12 @@ namespace SimpleMVVM.ViewModels
             // Console.WriteLine(SelectedItem.InvoiceNumber);
             foreach (var item in SelectedItems)
             {
-                Console.WriteLine(item.InvoiceNumber);
+                Console.WriteLine((item as InboundModel).InvoiceNumber);
             }
 
-            InboundItemsViewModel vm = new InboundItemsViewModel();
+            //InboundItemsViewModel vm = new InboundItemsViewModel();
 
-            await Application.Current.MainPage.Navigation.PushAsync(new InboundItemsView());
+            //await Application.Current.MainPage.Navigation.PushAsync(new InboundItemsView());
         }
 
         public ObservableRangeCollection<InboundModel> InboundList
@@ -62,7 +66,7 @@ namespace SimpleMVVM.ViewModels
             set => SetProperty(ref this._inboundList, value);
         }
 
-        public List<InboundModel> SelectedItems 
+        public ObservableRangeCollection<object> SelectedItems 
         { 
             get => _selectedItems; 
             set => SetProperty(ref _selectedItems, value);
