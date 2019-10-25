@@ -107,7 +107,7 @@ namespace SimpleMVVM.Behaviors
 
             var parameter = CommandParameter;
 
-            if (eventArgs != null && eventArgs != EventArgs.Empty)
+            if (CommandParameter == null && eventArgs != null && eventArgs != EventArgs.Empty)
             {
                 parameter = eventArgs;
 
