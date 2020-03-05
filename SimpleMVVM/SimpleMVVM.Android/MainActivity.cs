@@ -7,6 +7,9 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Xamarin.Forms;
+using System.Collections.Generic;
+using Android.Support.V4.App;
+using Android;
 
 namespace SimpleMVVM.Droid
 {
@@ -22,6 +25,26 @@ namespace SimpleMVVM.Droid
             Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+        }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.M) //23이상부터
+            {
+                List<string> permissions = new List<string>();
+
+                if (ActivityCompat.CheckSelfPermission(this, Manifest.Permission.WriteExternalStorage) != (int)Permission.Granted)
+                {
+                    permissions.Add(Manifest.Permission.WriteExternalStorage);
+                }
+
+                if (permissions.Count > 0)
+                {
+                    ActivityCompat.RequestPermissions(this, permissions.ToArray(), 1);
+                }
+            }
         }
     }
 }

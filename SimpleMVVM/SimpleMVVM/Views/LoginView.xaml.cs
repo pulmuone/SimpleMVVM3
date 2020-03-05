@@ -17,6 +17,12 @@ namespace SimpleMVVM.Views
         {
             InitializeComponent();
 
+            //ImagPallet.Source = new UriImageSource
+            //{ 
+            //    Uri = new Uri("https://xamarin.com/content/images/pages/forms/example-app.png"),
+            //    CachingEnabled = true,
+            //    CacheValidity = new TimeSpan(5, 0, 0, 0)
+            //};
         }
     }
 }

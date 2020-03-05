@@ -31,7 +31,7 @@
                 <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Image Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Source="Images/pallet.png"/>
+            <Image x:Name="ImagPallet" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Source="Images/pallet.png" />
 
             <Label Grid.Row="1" Grid.Column="1" Text="아이디 : " FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="End"/>
             <Entry Grid.Row="1" Grid.Column="2" Text="{Binding UserID}" IsEnabled="{Binding IsControlEnable}" VerticalTextAlignment="Center" Placeholder="ID를 입력해주세요."/>
@@ -48,8 +48,7 @@
                 IsEnabled="{Binding IsControlEnable}"
                 ItemsSource="{Binding WarehouseList}"
                 ItemDisplayBinding="{Binding WarehouseName}"
-                SelectedItem="{Binding SelectedWarehouse}"/>
-            
+                SelectedItem="{Binding SelectedWarehouse}"/>            
             <!--<Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="로그인"  Command="{Binding LoginCommand}"/>-->
             <Button Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" Text="로그인">
                 <Button.Behaviors>

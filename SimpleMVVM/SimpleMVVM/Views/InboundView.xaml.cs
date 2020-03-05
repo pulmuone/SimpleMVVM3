@@ -17,6 +17,8 @@ namespace SimpleMVVM.Views
         public InboundView()
         {
             InitializeComponent();
+
+            this.FindByName<Entry>("");
         }
 
         private async void listItem_Tapped(object sender, EventArgs e)

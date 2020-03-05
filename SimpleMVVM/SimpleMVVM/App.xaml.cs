@@ -13,7 +13,7 @@ namespace SimpleMVVM
             InitializeComponent();
 
             //MainPage = new MainPage();
-            MainPage = new NavigationPage(new Views.LoginView());
+            MainPage = new NavigationPage(new Views.ImagePageTest());
             //MainPage = new NavigationPage(new Views.Login2View());
         }
 

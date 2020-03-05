@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:SimpleMVVM.ViewModels"
+             xmlns:behaviors="clr-namespace:SimpleMVVM.Behaviors"
+             x:Class="SimpleMVVM.Views.ImagePageTest">
+
+    <ContentPage.BindingContext>
+        <vm:ImagePageTestViewModel x:Name="vm"/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <Grid ColumnSpacing="1" RowSpacing="1" BackgroundColor="LightGray" >
+            <Grid.RowDefinitions >
+                <RowDefinition Height="45" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="*"/>
+                <ColumnDefinition  Width="100"/>
+                <ColumnDefinition  Width="50"/>
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="lblLogIn"  x:FieldModifier="public"  Text="test" Margin="20,0,0,0" Grid.Row="0" Grid.Column="0" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalTextAlignment="Center" ></Label>
+            <Label x:Name="lblAppVersion"  x:FieldModifier="public"  WidthRequest="100" Text="4.00;0.01" Margin="0,0,20,0" Grid.Row="0" HorizontalOptions="EndAndExpand" Grid.Column="1" FontAttributes="Bold" HorizontalTextAlignment="End" VerticalTextAlignment="Center" ></Label>
+            <Button x:Name ="btUserDetailInformation" x:FieldModifier="public" FontSize="Micro" Grid.Row="0" Grid.Column="2" WidthRequest="50" HorizontalOptions="EndAndExpand"  Image="baseline_Plus_24.png" TextColor="Gray" ></Button>
+
+            <Image Grid.Row="1" Grid.ColumnSpan="3" x:Name="frontImg" Source="{Binding Image1.Source, Mode=TwoWay}" BackgroundColor="Transparent"  Aspect="AspectFit"/>
+
+            <Button Grid.Row="2" Grid.Column="0" Text="Image120" Command="{Binding Image1Command}"></Button>
+            <Button Grid.Row="3" Grid.Column="0" Text="Image180" Command="{Binding Image2Command}"></Button>
+            <Button Grid.Row="4" Grid.Column="0" Text="Clear" Command="{Binding Image3Command}"></Button>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
