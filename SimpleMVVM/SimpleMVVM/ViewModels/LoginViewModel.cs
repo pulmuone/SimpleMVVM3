@@ -21,7 +21,7 @@ namespace SimpleMVVM.ViewModels
         private string _password = string.Empty;
         private ObservableRangeCollection<WarehouseModel> _warehouseList = new ObservableRangeCollection<WarehouseModel>();
 
-        public ICommand LoginCommand { get; private set;}
+        public ICommand LoginCommand { get; private set; }
 
         public LoginViewModel()
         {

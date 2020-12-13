@@ -71,7 +71,7 @@
                     </Grid.ColumnDefinitions>
 
                     <controls:DataGridHeader Text="사번" SortingEnabled="True" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="0" FieldName="EmpId" BindingContext="{x:Reference vm}"/>
-                    <controls:DataGridHeader Text="이름" SortingEnabled="False" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="1" FieldName="EmpName" BindingContext="{x:Reference vm}"/>
+                    <controls:DataGridHeader Text="이름" SortingEnabled="True" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="1" FieldName="EmpName" BindingContext="{x:Reference vm}"/>
                     <controls:DataGridHeader Text="주소" SortingEnabled="True" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="2" FieldName="Addr" BindingContext="{x:Reference vm}"/>
                     <controls:DataGridHeader Text="-" SortingEnabled="False" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="3" />
                     <controls:DataGridHeader Text="나이" SortingEnabled="False" HorizontalTextAlignment="Center" Grid.Row="0" Grid.Column="4" FieldName="Age" BindingContext="{x:Reference vm}"/>
