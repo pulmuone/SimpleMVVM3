@@ -58,12 +58,12 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.MediaRouter">
-      <Version>1.2.0.1</Version>
+      <Version>1.2.5.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.AndroidX.Palette">
-      <Version>1.0.0.6</Version>
+      <Version>1.0.0.10</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1874" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.3" />
