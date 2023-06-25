@@ -39,33 +39,6 @@ namespace SimpleMVVM.ViewModels
             ReturnValueCommand = new Command(() => Return());
             SortedCommand = new Command<DataGridHeader>(Sorted);
 
-            List<EmpModel> Employees = new List<EmpModel>()
-            {
-                new EmpModel {EmpId = 1,  EmpName = "첫번째", Addr="주소, 첫번째", Age = 11, GradeCode = "001"},
-                new EmpModel {EmpId = 2,  EmpName = "두번째", Addr="주소, 두번째", Age = 12, GradeCode = "002"},
-                new EmpModel {EmpId = 3,  EmpName = "세번째", Addr="주소, 세번째", Age = 13, GradeCode = "003"},
-                new EmpModel {EmpId = 4,  EmpName = "네번째", Addr="주소, 네번째", Age = 14, GradeCode = "004"},
-                new EmpModel {EmpId = 5,  EmpName = "다섯번째", Addr="주소, 다섯번째", Age = 15, GradeCode = "001"},
-                new EmpModel {EmpId = 6,  EmpName = "여섯번째", Addr="주소, 여섯번째", Age = 16, GradeCode = "002"},
-                new EmpModel {EmpId = 7,  EmpName = "여섯번째", Addr="주소, 일곱번째", Age = 17, GradeCode = "003"},
-                new EmpModel {EmpId = 8,  EmpName = "여덟번째", Addr="주소, 여덟번째", Age = 18, GradeCode = "004"},
-                new EmpModel {EmpId = 9,  EmpName = "아홉번째", Addr="주소, 아홉번째", Age = 19, GradeCode = "001"},
-                new EmpModel {EmpId = 10,  EmpName = "열번째", Addr="주소, 열번째", Age = 20, GradeCode = "002"}
-
-                //new EmpModel {EmpId = 1,  EmpName = "첫번째", Addr="주소, 첫번재", Age = 11, SelectedRow=0},
-                //new EmpModel {EmpId = 2,  EmpName = "두번째", Addr="주소, 두번째", Age = 12, SelectedRow=1},
-                //new EmpModel {EmpId = 3,  EmpName = "세번째", Addr="주소, 세번째", Age = 13, SelectedRow=2},
-                //new EmpModel {EmpId = 4,  EmpName = "네번째", Addr="주소, 네번째", Age = 14, SelectedRow=3},
-                //new EmpModel {EmpId = 5,  EmpName = "다섯번째", Addr="주소, 다섯번째", Age = 15, SelectedRow=0},
-                //new EmpModel {EmpId = 6,  EmpName = "여섯번째", Addr="주소, 여섯번째", Age = 16, SelectedRow=1},
-                //new EmpModel {EmpId = 7,  EmpName = "여섯번째", Addr="주소, 일곱번째", Age = 17, SelectedRow=2},
-                //new EmpModel {EmpId = 8,  EmpName = "여덟번째", Addr="주소, 여덟번째", Age = 18, SelectedRow=3},
-                //new EmpModel {EmpId = 9,  EmpName = "아홉번째", Addr="주소, 아홉번째", Age = 19, SelectedRow=4},
-                //new EmpModel {EmpId = 10,  EmpName = "열번째", Addr="주소, 열번째", Age = 20, SelectedRow=0}
-
-            };
-
-            EmpList.AddRange(Employees);
         }
 
         private void Sorted(DataGridHeader e)
@@ -108,11 +81,38 @@ namespace SimpleMVVM.ViewModels
 
         private void Send()
         {
-
-            foreach (var item in EmpList)
+            List<EmpModel> Employees = new List<EmpModel>()
             {
-                Console.WriteLine(item.Grade.Code + ", " + item.GradeCode);
-            }
+                new EmpModel {EmpId = 1,  EmpName = "첫번째", Addr="주소, 첫번째", Age = 11, GradeCode = "001"},
+                new EmpModel {EmpId = 2,  EmpName = "두번째", Addr="주소, 두번째", Age = 12, GradeCode = "002"},
+                new EmpModel {EmpId = 3,  EmpName = "세번째", Addr="주소, 세번째", Age = 13, GradeCode = "003"},
+                new EmpModel {EmpId = 4,  EmpName = "네번째", Addr="주소, 네번째", Age = 14, GradeCode = "004"},
+                new EmpModel {EmpId = 5,  EmpName = "다섯번째", Addr="주소, 다섯번째", Age = 15, GradeCode = "001"},
+                new EmpModel {EmpId = 6,  EmpName = "여섯번째", Addr="주소, 여섯번째", Age = 16, GradeCode = "002"},
+                new EmpModel {EmpId = 7,  EmpName = "여섯번째", Addr="주소, 일곱번째", Age = 17, GradeCode = "003"},
+                new EmpModel {EmpId = 8,  EmpName = "여덟번째", Addr="주소, 여덟번째", Age = 18, GradeCode = "004"},
+                new EmpModel {EmpId = 9,  EmpName = "아홉번째", Addr="주소, 아홉번째", Age = 19, GradeCode = "001"},
+                new EmpModel {EmpId = 10,  EmpName = "열번째", Addr="주소, 열번째", Age = 20, GradeCode = "002"}
+
+                //new EmpModel {EmpId = 1,  EmpName = "첫번째", Addr="주소, 첫번재", Age = 11, SelectedRow=0},
+                //new EmpModel {EmpId = 2,  EmpName = "두번째", Addr="주소, 두번째", Age = 12, SelectedRow=1},
+                //new EmpModel {EmpId = 3,  EmpName = "세번째", Addr="주소, 세번째", Age = 13, SelectedRow=2},
+                //new EmpModel {EmpId = 4,  EmpName = "네번째", Addr="주소, 네번째", Age = 14, SelectedRow=3},
+                //new EmpModel {EmpId = 5,  EmpName = "다섯번째", Addr="주소, 다섯번째", Age = 15, SelectedRow=0},
+                //new EmpModel {EmpId = 6,  EmpName = "여섯번째", Addr="주소, 여섯번째", Age = 16, SelectedRow=1},
+                //new EmpModel {EmpId = 7,  EmpName = "여섯번째", Addr="주소, 일곱번째", Age = 17, SelectedRow=2},
+                //new EmpModel {EmpId = 8,  EmpName = "여덟번째", Addr="주소, 여덟번째", Age = 18, SelectedRow=3},
+                //new EmpModel {EmpId = 9,  EmpName = "아홉번째", Addr="주소, 아홉번째", Age = 19, SelectedRow=4},
+                //new EmpModel {EmpId = 10,  EmpName = "열번째", Addr="주소, 열번째", Age = 20, SelectedRow=0}
+
+            };
+
+            EmpList.AddRange(Employees);
+
+            //foreach (var item in EmpList)
+            //{
+            //    Console.WriteLine(item.Grade.Code + ", " + item.GradeCode);
+            //}
 
             //EmpList.Clear();
             //for (int i = 0; i < 100; i++)

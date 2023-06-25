@@ -12,7 +12,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.Platforms" Version="5.0.4" />
     <PackageReference Include="Xam.Plugins.Settings" Version="4.1.0-beta" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2578" />
   </ItemGroup>
 
   <ItemGroup>

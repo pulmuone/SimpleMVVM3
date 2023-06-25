@@ -90,7 +90,7 @@
                     SelectionChanged="CollectionView_SelectionChanged" 
                     ItemsSource="{Binding EmpList}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="model:EmpModel">
+                        <DataTemplate x:DataType="model:EmpModel" x:Name="cvDt">
                                 <Grid ColumnSpacing="0" RowSpacing="0" HeightRequest="40">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="70"/>
