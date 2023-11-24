@@ -76,10 +76,7 @@ namespace SimpleMVVM
                     //item.SetBinding(Label.TextProperty, new Binding("EmpId", BindingMode.Default));
                     //item.SetBinding(BindingContextProperty, new Binding("EmpId", source: BindingContext));
 
-
                     //(_grid as Grid).SetValue(BindingContextProperty, item);
-
-
                 }
                 i++;
             }

@@ -106,8 +106,7 @@
                                 <Label Grid.Column="2" Text="{Binding Addr}"/>
                                 <Button Grid.Column="3" Text="-"  Command="{Binding MinusButtonCommand}"/>
 
-                                <controls:ExtendedEntry 
-                                    x:Name="AgeEntry"
+                                <controls:ExtendedEntry x:Name="AgeEntry"
                                     Grid.Column="4" 
                                     Text="{Binding Age}"  
                                     Keyboard="Numeric" 
